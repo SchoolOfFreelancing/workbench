@@ -11,14 +11,14 @@ services:
     networks:
       default:
         aliases:
-          - api.wb.local
-          - auth.wb.local
-          - ws.slanger.wb.local
-          - api.slanger.wb.local
-          - pma.wb.local
-          - eth.wb.local
-          - monitor.wb.local
+          - api.quantumcx.com
+          - auth.quantumcx.com
+          - ws.slanger.quantumcx.com
+          - api.slanger.quantumcx.com
+          - pma.quantumcx.com
+          - eth.quantumcx.com
+          - monitor.quantumcx.com
     labels:
       traefik.enable: true
-      traefik.frontend.rule: 'Host: monitor.wb.local'
+      traefik.frontend.rule: 'Host: monitor.quantumcx.com'
       traefik.port: 8080
