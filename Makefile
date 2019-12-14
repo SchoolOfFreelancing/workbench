@@ -50,8 +50,14 @@ dependencies:
 prepare: dependencies daemons cryptonodes
 
 setup-apps: build
-	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate db:seed"
-	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
+#	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate db:seed"
+#	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
+#       $(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate"
+        $(COMPOSE) run --rm peatio bash -c "bundle exec rake seed:blockchains"
+        $(COMPOSE) run --rm peatio bash -c "bundle exec rake seed:currencies"
+        $(COMPOSE) run --rm peatio bash -c "bundle exec rake seed:wallets"
+        $(COMPOSE) run --rm peatio bash -c "bundle exec rake seed:markets"
+#        $(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
 	$(COMPOSE) up --build -d peatio barong trading_ui proxy
